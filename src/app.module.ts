@@ -16,7 +16,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       useFactory: async (configService: ConfigurationService) => ({
         type: 'postgres',
         autoLoadEntities: true,
-        synchronize: true,
+        synchronize: true,    //TO DO: change this to false and learn how to generate migrations
         host: configService.pgHost,
         port: configService.pgPort,
         username: configService.pgUser,
