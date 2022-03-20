@@ -4,15 +4,15 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { ConfigurationService } from "../configuration/configuration.service";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { JwtPayload } from "./jwt-payload.interface";
-import { Shooter } from "./shooter.entity";
-import { ShooterRepository } from "./shooter.repository";
+import { User } from "./user.entity";
+import { UserRepository } from "./user.repository";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
     
     constructor(
-        @InjectRepository(ShooterRepository)
-        private shooterRepository: ShooterRepository,
+        @InjectRepository(UserRepository)
+        private userRepository: UserRepository,
         private configService: ConfigurationService,
         ){
         super({
@@ -22,9 +22,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 // check the username in the jwt payload and make sure that we can find that user in the database
 //  if we can't find the user, throw a 401 back for the request.
-    async validate(payload: JwtPayload): Promise<Shooter> {
+    async validate(payload: JwtPayload): Promise<User> {
         const { username } = payload;
-        const user = await this.shooterRepository.findOne({ username });
+        const user = await this.UserRepository.findOne({ username });
 
         if (!user){
             throw new UnauthorizedException();

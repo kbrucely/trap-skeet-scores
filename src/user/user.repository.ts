@@ -1,12 +1,12 @@
 import { ConflictException, InternalServerErrorException } from "@nestjs/common";
 import { EntityRepository, Repository } from "typeorm";
 import { AuthCredentialsDto } from "./dto/auth-credentials.dto";
-import { Shooter } from './shooter.entity';
+import { User } from './user.entity';
 import * as bcrypt from "bcrypt";
 
-@EntityRepository (Shooter)
-export class ShooterRepository extends Repository<Shooter>{
-    async createShooter(authCredentialsDto: AuthCredentialsDto): Promise<void>{
+@EntityRepository (User)
+export class UserRepository extends Repository<User>{
+    async createUser(authCredentialsDto: AuthCredentialsDto): Promise<void>{
         const { username, password } = authCredentialsDto;
 
         // hash the password before storing it

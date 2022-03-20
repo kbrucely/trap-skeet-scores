@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GameModule } from './game/game.module';
-import { ShooterModule } from './shooter/shooter.module';
+import { UserModule } from './user/user.module';
 import { ConfigurationModule } from './configuration/configuration.module';
 import { ConfigurationService } from './configuration/configuration.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     GameModule,
-    ShooterModule,
+    UserModule,
     ConfigurationModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigurationModule],

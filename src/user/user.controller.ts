@@ -1,20 +1,20 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ShooterService } from './shooter.service';
+import { UserService } from './user.service';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 
-@Controller('shooter')
-export class ShooterController {
+@Controller('user')
+export class UserController {
     constructor(
-        private shooterService: ShooterService
+        private userService: UserService
     ) {}
 
     @Post('/signup')
     signUp(@Body() authCredentialsDto: AuthCredentialsDto): Promise<void>{
-        return this.shooterService.signUp(authCredentialsDto);
+        return this.userService.signUp(authCredentialsDto);
     }
 
     @Post('/signin')
     signIn(@Body() authCredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string }>{
-        return this.shooterService.signIn(authCredentialsDto);
+        return this.userService.signIn(authCredentialsDto);
     }
 }

@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ShooterService } from './shooter.service';
-import { ShooterController } from './shooter.controller';
+import { UserService } from './user.service';
+import { UserController } from './user.controller';
 import { TypeORMError } from 'typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ShooterRepository } from './shooter.repository';
+import { UserRepository } from './user.repository';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
@@ -25,10 +25,10 @@ import { config } from 'process';
         }
       }),
     }),
-    TypeOrmModule.forFeature([ShooterRepository]),
+    TypeOrmModule.forFeature([UserRepository]),
   ],
-  providers: [ShooterService, JwtStrategy],
-  controllers: [ShooterController],
+  providers: [UserService, JwtStrategy],
+  controllers: [UserController],
   exports: [JwtStrategy, PassportModule],
 })
-export class ShooterModule {}
+export class UserModule {}
